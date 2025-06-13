@@ -1,0 +1,6 @@
+/home/navexd/cpp-httplib/build/CMakeFiles/edit_cache.dir
+/home/navexd/cpp-httplib/build/CMakeFiles/rebuild_cache.dir
+/home/navexd/cpp-httplib/build/CMakeFiles/list_install_components.dir
+/home/navexd/cpp-httplib/build/CMakeFiles/install.dir
+/home/navexd/cpp-httplib/build/CMakeFiles/install/local.dir
+/home/navexd/cpp-httplib/build/CMakeFiles/install/strip.dir

@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>CMakeLists.txt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ffc66d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #cf8e6d;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CMakeLists.txt</font>
+</center></td></tr></table>
+<pre><span class="s0">cmake_minimum_required</span><span class="s1">(VERSION 3.27)</span>
+<span class="s0">project</span><span class="s1">(untitled)</span>
+<span class="s0">set</span><span class="s1">(CMAKE_CXX_STANDARD)</span>
+<span class="s0">set</span><span class="s1">(Maria_INCLUDE_DIRS /home/navexd/CLionProjects/api_rest/mariadbpp-master/include/)</span>
+<span class="s0">set</span><span class="s1">(Libmysql_INCLUDE_DIRS /usr/include/)</span>
+<span class="s0">set</span><span class="s1">(JSON_DEVELOP_DIRS /home/navexd/CLionProjects/test/json-develop/include/)</span>
+<span class="s0">set</span><span class="s1">(HTTPLIB_INCLUDE_DIR /home/navexd/CLionProjects/api_rest/cpp-httplib/)</span>
+<span class="s0">include_directories</span><span class="s1">(</span><span class="s3">${</span><span class="s1">JSON_DEVELOP_DIRS</span><span class="s3">}</span><span class="s1">/lib)</span>
+<span class="s0">include_directories</span><span class="s1">(</span><span class="s3">${</span><span class="s1">Maria_INCLUDE_DIRS</span><span class="s3">}</span><span class="s1">)</span>
+<span class="s0">include_directories</span><span class="s1">(</span><span class="s3">${</span><span class="s1">HTTPLIB_INCLUDE_DIR</span><span class="s3">}</span><span class="s1">)</span>
+<span class="s0">set</span><span class="s1">(Crow_INCLUDE_DIRS /home/navexd/CLionProjects/test/Crow-1.1.0/include/)</span>
+<span class="s0">include_directories</span><span class="s1">(</span><span class="s3">${</span><span class="s1">Crow_INCLUDE_DIRS</span><span class="s3">}</span><span class="s1">)</span>
+
+<span class="s0">add_executable</span><span class="s1">(MyProject main.cpp)</span>
+<span class="s0">target_link_libraries</span><span class="s1">(MyProject mariadbclientpp)</span>
+</pre>
+</body>
+</html>

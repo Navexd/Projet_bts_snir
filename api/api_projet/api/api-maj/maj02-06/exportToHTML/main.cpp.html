@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>main.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #b3ae60;}
+.s1 { color: #bcbec4;}
+.s2 { color: #6aab73;}
+.s3 { color: #cf8e6d;}
+.s4 { color: #bcbec4;}
+.s5 { color: #2aacb8;}
+.s6 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">#include </span><span class="s2">&lt;crow.h&gt;</span>
+<span class="s0">#include </span><span class="s2">&lt;iostream&gt;</span>
+<span class="s0">#include </span><span class="s2">&lt;mysql/mysql.h&gt;</span>
+<span class="s0">#include </span><span class="s2">&lt;fstream&gt;</span>
+<span class="s0">#include </span><span class="s2">&lt;nlohmann/json.hpp&gt;</span>
+<span class="s0">#include </span><span class="s2">&lt;httplib.h&gt;</span>
+
+<span class="s3">using </span><span class="s1">json  </span><span class="s4">= </span><span class="s1">nlohmann</span><span class="s4">::</span><span class="s1">json</span><span class="s4">;</span>
+
+<span class="s3">bool </span><span class="s1">connectToDatabase</span><span class="s4">(</span><span class="s1">MYSQL </span><span class="s4">*&amp;</span><span class="s1">conn</span><span class="s4">) {</span>
+    <span class="s1">conn </span><span class="s4">= </span><span class="s1">mysql_init</span><span class="s4">(</span><span class="s3">nullptr</span><span class="s4">);</span>
+    <span class="s3">if </span><span class="s4">(!</span><span class="s1">conn</span><span class="s4">) {</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">cout </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;Connection object initialization failed&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std</span><span class="s4">::</span><span class="s1">endl</span><span class="s4">;</span>
+        <span class="s3">return false</span><span class="s4">;</span>
+    <span class="s4">}</span>
+
+    <span class="s3">if </span><span class="s4">(!</span><span class="s1">mysql_real_connect</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">, </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="s4">, </span><span class="s2">&quot;root&quot;</span><span class="s4">, </span><span class="s2">&quot;root&quot;</span><span class="s4">, </span><span class="s2">&quot;test&quot;</span><span class="s4">, </span><span class="s5">3306</span><span class="s4">, </span><span class="s3">nullptr</span><span class="s4">, </span><span class="s5">0</span><span class="s4">)) {</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">cout </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;Connection failed: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">mysql_error</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">) &lt;&lt; </span><span class="s1">std</span><span class="s4">::</span><span class="s1">endl</span><span class="s4">;</span>
+        <span class="s3">return false</span><span class="s4">;</span>
+    <span class="s4">}</span>
+
+    <span class="s1">std</span><span class="s4">::</span><span class="s1">cout </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;Connection success&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std</span><span class="s4">::</span><span class="s1">endl</span><span class="s4">;</span>
+    <span class="s3">return true</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+
+
+<span class="s3">bool </span><span class="s1">authenticateUser</span><span class="s4">(</span><span class="s3">const </span><span class="s1">std</span><span class="s4">::</span><span class="s1">string</span><span class="s4">&amp; </span><span class="s1">admin</span><span class="s4">, </span><span class="s3">const </span><span class="s1">std</span><span class="s4">::</span><span class="s1">string</span><span class="s4">&amp; </span><span class="s1">passwrd</span><span class="s4">, </span><span class="s1">MYSQL</span><span class="s4">* </span><span class="s1">conn</span><span class="s4">) {</span>
+    <span class="s6">// Votre logique d'authentification ici</span>
+    <span class="s6">// Par exemple, exécutez une requête SQL pour vérifier les identifiants dans votre base de données</span>
+
+    <span class="s1">std</span><span class="s4">::</span><span class="s1">string query </span><span class="s4">= </span><span class="s2">&quot;SELECT COUNT(*) FROM authentification WHERE admin = '&quot; </span><span class="s4">+ </span><span class="s1">admin </span><span class="s4">+ </span><span class="s2">&quot;' AND passwrd = '&quot; </span><span class="s4">+ </span><span class="s1">passwrd </span><span class="s4">+ </span><span class="s2">&quot;'&quot;</span><span class="s4">;</span>
+    <span class="s3">if </span><span class="s4">(</span><span class="s1">mysql_query</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">, </span><span class="s1">query</span><span class="s4">.</span><span class="s1">c_str</span><span class="s4">())) {</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">cerr </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;Error executing SQL query: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">mysql_error</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">) &lt;&lt; </span><span class="s1">std</span><span class="s4">::</span><span class="s1">endl</span><span class="s4">;</span>
+        <span class="s3">return false</span><span class="s4">; </span><span class="s6">// Échec de l'authentification en cas d'erreur de requête</span>
+    <span class="s4">}</span>
+
+    <span class="s1">MYSQL_RES</span><span class="s4">* </span><span class="s1">result </span><span class="s4">= </span><span class="s1">mysql_store_result</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">);</span>
+    <span class="s3">if </span><span class="s4">(!</span><span class="s1">result</span><span class="s4">) {</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">cerr </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;Error retrieving SQL result: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">mysql_error</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">) &lt;&lt; </span><span class="s1">std</span><span class="s4">::</span><span class="s1">endl</span><span class="s4">;</span>
+        <span class="s3">return false</span><span class="s4">; </span><span class="s6">// Échec de l'authentification en cas d'erreur de récupération du résultat</span>
+    <span class="s4">}</span>
+
+    <span class="s1">MYSQL_ROW row </span><span class="s4">= </span><span class="s1">mysql_fetch_row</span><span class="s4">(</span><span class="s1">result</span><span class="s4">);</span>
+    <span class="s3">int </span><span class="s1">count </span><span class="s4">= </span><span class="s1">row </span><span class="s4">? </span><span class="s1">std</span><span class="s4">::</span><span class="s1">stoi</span><span class="s4">(</span><span class="s1">row</span><span class="s4">[</span><span class="s5">0</span><span class="s4">]) : </span><span class="s5">0</span><span class="s4">;</span>
+    <span class="s1">mysql_free_result</span><span class="s4">(</span><span class="s1">result</span><span class="s4">);</span>
+
+    <span class="s6">// Si count est supérieur à zéro, cela signifie que l'utilisateur existe dans la base de données</span>
+    <span class="s3">return </span><span class="s1">count </span><span class="s4">&gt; </span><span class="s5">0</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+<span class="s1">crow</span><span class="s4">::</span><span class="s1">response handleLogin</span><span class="s4">(</span><span class="s3">const </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">request </span><span class="s4">&amp;</span><span class="s1">req</span><span class="s4">, </span><span class="s1">MYSQL </span><span class="s4">*</span><span class="s1">conn</span><span class="s4">) {</span>
+    <span class="s3">if </span><span class="s4">(</span><span class="s1">req</span><span class="s4">.</span><span class="s1">method </span><span class="s4">== </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">HTTPMethod</span><span class="s4">::</span><span class="s1">Post</span><span class="s4">) {</span>
+        <span class="s6">// Récupérer les données du formulaire à partir du corps de la requête</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">string body </span><span class="s4">= </span><span class="s1">req</span><span class="s4">.</span><span class="s1">body</span><span class="s4">;</span>
+
+        <span class="s6">// Analyser les données du formulaire pour extraire le nom d'utilisateur et le mot de passe</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">string admin</span><span class="s4">, </span><span class="s1">passwrd</span><span class="s4">;</span>
+        <span class="s1">size_t pos </span><span class="s4">= </span><span class="s1">body</span><span class="s4">.</span><span class="s1">find</span><span class="s4">(</span><span class="s2">&quot;admin=&quot;</span><span class="s4">);</span>
+        <span class="s3">if </span><span class="s4">(</span><span class="s1">pos </span><span class="s4">!= </span><span class="s1">std</span><span class="s4">::</span><span class="s1">string</span><span class="s4">::</span><span class="s1">npos</span><span class="s4">) {</span>
+            <span class="s1">pos </span><span class="s4">+= </span><span class="s1">strlen</span><span class="s4">(</span><span class="s2">&quot;admin=&quot;</span><span class="s4">);</span>
+            <span class="s1">size_t end_pos </span><span class="s4">= </span><span class="s1">body</span><span class="s4">.</span><span class="s1">find</span><span class="s4">(</span><span class="s2">&quot;&amp;&quot;</span><span class="s4">, </span><span class="s1">pos</span><span class="s4">);</span>
+            <span class="s3">if </span><span class="s4">(</span><span class="s1">end_pos </span><span class="s4">!= </span><span class="s1">std</span><span class="s4">::</span><span class="s1">string</span><span class="s4">::</span><span class="s1">npos</span><span class="s4">) {</span>
+                <span class="s1">admin </span><span class="s4">= </span><span class="s1">httplib</span><span class="s4">::</span><span class="s1">detail</span><span class="s4">::</span><span class="s1">decode_url</span><span class="s4">(</span><span class="s1">body</span><span class="s4">.</span><span class="s1">substr</span><span class="s4">(</span><span class="s1">pos</span><span class="s4">, </span><span class="s1">end_pos </span><span class="s4">- </span><span class="s1">pos</span><span class="s4">), </span><span class="s3">true</span><span class="s4">);</span>
+            <span class="s4">}</span>
+        <span class="s4">}</span>
+
+        <span class="s1">pos </span><span class="s4">= </span><span class="s1">body</span><span class="s4">.</span><span class="s1">find</span><span class="s4">(</span><span class="s2">&quot;passwrd=&quot;</span><span class="s4">);</span>
+        <span class="s3">if </span><span class="s4">(</span><span class="s1">pos </span><span class="s4">!= </span><span class="s1">std</span><span class="s4">::</span><span class="s1">string</span><span class="s4">::</span><span class="s1">npos</span><span class="s4">) {</span>
+            <span class="s1">pos </span><span class="s4">+= </span><span class="s1">strlen</span><span class="s4">(</span><span class="s2">&quot;passwrd=&quot;</span><span class="s4">);</span>
+            <span class="s1">passwrd </span><span class="s4">= </span><span class="s1">httplib</span><span class="s4">::</span><span class="s1">detail</span><span class="s4">::</span><span class="s1">decode_url</span><span class="s4">(</span><span class="s1">body</span><span class="s4">.</span><span class="s1">substr</span><span class="s4">(</span><span class="s1">pos</span><span class="s4">), </span><span class="s3">true</span><span class="s4">);</span>
+        <span class="s4">}</span>
+
+        <span class="s6">// Vérifier si les champs d'identifiant et de mot de passe ne sont pas vides</span>
+        <span class="s3">if </span><span class="s4">(</span><span class="s1">admin</span><span class="s4">.</span><span class="s1">empty</span><span class="s4">() || </span><span class="s1">passwrd</span><span class="s4">.</span><span class="s1">empty</span><span class="s4">()) {</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">400</span><span class="s4">, </span><span class="s2">&quot;Empty fields in form&quot;</span><span class="s4">};</span>
+        <span class="s4">}</span>
+
+        <span class="s6">// Vérifier l'authentification</span>
+        <span class="s3">if </span><span class="s4">(</span><span class="s1">authenticateUser</span><span class="s4">(</span><span class="s1">admin</span><span class="s4">, </span><span class="s1">passwrd</span><span class="s4">, </span><span class="s1">conn</span><span class="s4">)) {</span>
+            <span class="s1">crow</span><span class="s4">::</span><span class="s1">response res</span><span class="s4">(</span><span class="s5">302</span><span class="s4">);</span>
+            <span class="s1">res</span><span class="s4">.</span><span class="s1">set_header</span><span class="s4">(</span><span class="s2">&quot;Location&quot;</span><span class="s4">, </span><span class="s2">&quot;/data&quot;</span><span class="s4">);</span>
+            <span class="s3">return </span><span class="s1">res</span><span class="s4">;</span>
+        <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">401</span><span class="s4">, </span><span class="s2">&quot;Authentication failed&quot;</span><span class="s4">};</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+        <span class="s3">return </span><span class="s4">{</span><span class="s5">405</span><span class="s4">, </span><span class="s2">&quot;Method Not Allowed&quot;</span><span class="s4">};</span>
+    <span class="s4">}</span>
+<span class="s4">}</span>
+
+<span class="s1">crow</span><span class="s4">::</span><span class="s1">response handleData</span><span class="s4">(</span><span class="s3">const </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">request </span><span class="s4">&amp;</span><span class="s1">req</span><span class="s4">, </span><span class="s1">MYSQL </span><span class="s4">*</span><span class="s1">conn</span><span class="s4">) {</span>
+    <span class="s3">if </span><span class="s4">(</span><span class="s1">req</span><span class="s4">.</span><span class="s1">method </span><span class="s4">== </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">HTTPMethod</span><span class="s4">::</span><span class="s1">Get</span><span class="s4">) { </span><span class="s6">// Correction de la comparaison de la méthode HTTP</span>
+        <span class="s6">// Récupérer les données de la base de données et les renvoyer</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">ostringstream oss</span><span class="s4">;</span>
+        <span class="s6">// Récupération des données de la table &quot;first&quot;</span>
+        <span class="s3">if </span><span class="s4">(</span><span class="s1">mysql_query</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">, </span><span class="s2">&quot;SELECT * FROM first&quot;</span><span class="s4">)) {</span>
+            <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;Error reading table: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">mysql_error</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">);</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">500</span><span class="s4">, </span><span class="s1">oss</span><span class="s4">.</span><span class="s1">str</span><span class="s4">()};</span>
+        <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+            <span class="s1">MYSQL_RES </span><span class="s4">*</span><span class="s1">result </span><span class="s4">= </span><span class="s1">mysql_store_result</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">);</span>
+            <span class="s3">if </span><span class="s4">(</span><span class="s1">result</span><span class="s4">) {</span>
+                <span class="s6">// Construction de la réponse HTML avec les données récupérées</span>
+                <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;&lt;html lang=</span><span class="s3">\&quot;</span><span class="s2">fr</span><span class="s3">\&quot;</span><span class="s2">&gt;&lt;/html&gt;&quot;</span><span class="s4">;</span>
+                <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;&lt;h1&gt;Data read successfully:&lt;/h1&gt;&lt;br&gt;&quot;</span><span class="s4">;</span>
+                <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;&lt;table border='1'&gt;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;nom&lt;/th&gt;&lt;th&gt;age&lt;/th&gt;&lt;/tr&gt;&quot;</span><span class="s4">;</span>
+                <span class="s1">MYSQL_ROW row</span><span class="s4">;</span>
+                <span class="s3">while </span><span class="s4">((</span><span class="s1">row </span><span class="s4">= </span><span class="s1">mysql_fetch_row</span><span class="s4">(</span><span class="s1">result</span><span class="s4">))) {</span>
+                    <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;&lt;tr&gt;&quot;</span><span class="s4">;</span>
+                    <span class="s3">for </span><span class="s4">(</span><span class="s3">unsigned int </span><span class="s1">i </span><span class="s4">= </span><span class="s5">0</span><span class="s4">; </span><span class="s1">i </span><span class="s4">&lt; </span><span class="s1">mysql_num_fields</span><span class="s4">(</span><span class="s1">result</span><span class="s4">); </span><span class="s1">i</span><span class="s4">++) {</span>
+                        <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;&lt;td&gt;&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">row</span><span class="s4">[</span><span class="s1">i</span><span class="s4">] &lt;&lt; </span><span class="s2">&quot;&lt;/td&gt;&quot;</span><span class="s4">;</span>
+                    <span class="s4">}</span>
+                    <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;&lt;/tr&gt;&quot;</span><span class="s4">;</span>
+                <span class="s4">}</span>
+                <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;&lt;/table&gt;&quot;</span><span class="s4">;</span>
+                <span class="s1">mysql_free_result</span><span class="s4">(</span><span class="s1">result</span><span class="s4">);</span>
+                <span class="s3">return </span><span class="s4">{</span><span class="s5">200</span><span class="s4">, </span><span class="s1">oss</span><span class="s4">.</span><span class="s1">str</span><span class="s4">()};</span>
+            <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+                <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;Error reading table: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">mysql_error</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">);</span>
+                <span class="s3">return </span><span class="s4">{</span><span class="s5">500</span><span class="s4">, </span><span class="s1">oss</span><span class="s4">.</span><span class="s1">str</span><span class="s4">()};</span>
+            <span class="s4">}</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+        <span class="s3">return </span><span class="s4">{</span><span class="s5">405</span><span class="s4">, </span><span class="s2">&quot;Method Not Allowed&quot;</span><span class="s4">};</span>
+    <span class="s4">}</span>
+<span class="s4">}</span>
+
+<span class="s1">crow</span><span class="s4">::</span><span class="s1">response handleDataCreate</span><span class="s4">(</span><span class="s3">const </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">request </span><span class="s4">&amp;</span><span class="s1">req</span><span class="s4">, </span><span class="s1">MYSQL </span><span class="s4">*</span><span class="s1">conn</span><span class="s4">) {</span>
+    <span class="s3">if </span><span class="s4">(</span><span class="s1">req</span><span class="s4">.</span><span class="s1">method </span><span class="s4">== </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">HTTPMethod</span><span class="s4">::</span><span class="s1">Post</span><span class="s4">) { </span><span class="s6">// Correction de la comparaison de la méthode HTTP</span>
+        <span class="s3">auto </span><span class="s1">json </span><span class="s4">= </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">json</span><span class="s4">::</span><span class="s1">load</span><span class="s4">(</span><span class="s1">req</span><span class="s4">.</span><span class="s1">body</span><span class="s4">);</span>
+        <span class="s3">if </span><span class="s4">(!</span><span class="s1">json</span><span class="s4">)</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">400</span><span class="s4">, </span><span class="s2">&quot;Invalid JSON&quot;</span><span class="s4">};</span>
+
+        <span class="s3">if </span><span class="s4">(!</span><span class="s1">json</span><span class="s4">.</span><span class="s1">has</span><span class="s4">(</span><span class="s2">&quot;id&quot;</span><span class="s4">) || !</span><span class="s1">json</span><span class="s4">.</span><span class="s1">has</span><span class="s4">(</span><span class="s2">&quot;nom&quot;</span><span class="s4">) || !</span><span class="s1">json</span><span class="s4">.</span><span class="s1">has</span><span class="s4">(</span><span class="s2">&quot;age&quot;</span><span class="s4">))</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">400</span><span class="s4">, </span><span class="s2">&quot;Missing fields in JSON&quot;</span><span class="s4">};</span>
+
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">string id </span><span class="s4">= </span><span class="s1">std</span><span class="s4">::</span><span class="s1">to_string</span><span class="s4">(</span><span class="s1">json</span><span class="s4">[</span><span class="s2">&quot;id&quot;</span><span class="s4">].</span><span class="s1">i</span><span class="s4">());</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">string nom </span><span class="s4">= </span><span class="s1">json</span><span class="s4">[</span><span class="s2">&quot;nom&quot;</span><span class="s4">].</span><span class="s1">s</span><span class="s4">();</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">string age </span><span class="s4">= </span><span class="s1">std</span><span class="s4">::</span><span class="s1">to_string</span><span class="s4">(</span><span class="s1">json</span><span class="s4">[</span><span class="s2">&quot;age&quot;</span><span class="s4">].</span><span class="s1">i</span><span class="s4">());</span>
+
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">ostringstream oss</span><span class="s4">;</span>
+        <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;INSERT INTO first (id, nom, age) VALUES ('&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">id </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;', '&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">nom </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;', '&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">age </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;')&quot;</span><span class="s4">;</span>
+        <span class="s3">if </span><span class="s4">(</span><span class="s1">mysql_query</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">, </span><span class="s1">oss</span><span class="s4">.</span><span class="s1">str</span><span class="s4">().</span><span class="s1">c_str</span><span class="s4">())) {</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">500</span><span class="s4">, </span><span class="s2">&quot;Error executing SQL query: &quot; </span><span class="s4">+ </span><span class="s1">std</span><span class="s4">::</span><span class="s1">string</span><span class="s4">(</span><span class="s1">mysql_error</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">))};</span>
+        <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">201</span><span class="s4">, </span><span class="s2">&quot;Data created successfully&quot;</span><span class="s4">};</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+        <span class="s3">return </span><span class="s4">{</span><span class="s5">405</span><span class="s4">, </span><span class="s2">&quot;Method Not Allowed&quot;</span><span class="s4">};</span>
+    <span class="s4">}</span>
+<span class="s4">}</span>
+
+<span class="s1">crow</span><span class="s4">::</span><span class="s1">response handleDataUpdate</span><span class="s4">(</span><span class="s3">const </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">request </span><span class="s4">&amp;</span><span class="s1">req</span><span class="s4">, </span><span class="s3">int </span><span class="s1">id</span><span class="s4">, </span><span class="s1">MYSQL </span><span class="s4">*</span><span class="s1">conn</span><span class="s4">) {</span>
+    <span class="s3">if </span><span class="s4">(</span><span class="s1">req</span><span class="s4">.</span><span class="s1">method </span><span class="s4">== </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">HTTPMethod</span><span class="s4">::</span><span class="s1">Put</span><span class="s4">) { </span><span class="s6">// Correction de la comparaison de la méthode HTTP</span>
+        <span class="s3">auto </span><span class="s1">json </span><span class="s4">= </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">json</span><span class="s4">::</span><span class="s1">load</span><span class="s4">(</span><span class="s1">req</span><span class="s4">.</span><span class="s1">body</span><span class="s4">);</span>
+        <span class="s3">if </span><span class="s4">(!</span><span class="s1">json</span><span class="s4">)</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">400</span><span class="s4">, </span><span class="s2">&quot;Invalid JSON&quot;</span><span class="s4">};</span>
+
+        <span class="s3">if </span><span class="s4">(!</span><span class="s1">json</span><span class="s4">.</span><span class="s1">has</span><span class="s4">(</span><span class="s2">&quot;nom&quot;</span><span class="s4">) || !</span><span class="s1">json</span><span class="s4">.</span><span class="s1">has</span><span class="s4">(</span><span class="s2">&quot;age&quot;</span><span class="s4">))</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">400</span><span class="s4">, </span><span class="s2">&quot;Missing fields in JSON&quot;</span><span class="s4">};</span>
+
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">string nom </span><span class="s4">= </span><span class="s1">json</span><span class="s4">[</span><span class="s2">&quot;nom&quot;</span><span class="s4">].</span><span class="s1">s</span><span class="s4">();</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">string age </span><span class="s4">= </span><span class="s1">std</span><span class="s4">::</span><span class="s1">to_string</span><span class="s4">(</span><span class="s1">json</span><span class="s4">[</span><span class="s2">&quot;age&quot;</span><span class="s4">].</span><span class="s1">i</span><span class="s4">());</span>
+
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">ostringstream oss</span><span class="s4">;</span>
+        <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;UPDATE first SET nom = '&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">nom </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;', age = '&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">age </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;' WHERE id = &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">id</span><span class="s4">;</span>
+        <span class="s3">if </span><span class="s4">(</span><span class="s1">mysql_query</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">, </span><span class="s1">oss</span><span class="s4">.</span><span class="s1">str</span><span class="s4">().</span><span class="s1">c_str</span><span class="s4">())) {</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">500</span><span class="s4">, </span><span class="s2">&quot;Error executing SQL query: &quot; </span><span class="s4">+ </span><span class="s1">std</span><span class="s4">::</span><span class="s1">string</span><span class="s4">(</span><span class="s1">mysql_error</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">))};</span>
+        <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+            <span class="s3">return </span><span class="s4">{</span><span class="s5">200</span><span class="s4">, </span><span class="s2">&quot;Data updated successfully&quot;</span><span class="s4">};</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+        <span class="s3">return </span><span class="s4">{</span><span class="s5">405</span><span class="s4">, </span><span class="s2">&quot;Method Not Allowed&quot;</span><span class="s4">};</span>
+    <span class="s4">}</span>
+<span class="s4">}</span>
+
+<span class="s1">crow</span><span class="s4">::</span><span class="s1">response handleDataDelete</span><span class="s4">(</span><span class="s3">int </span><span class="s1">id</span><span class="s4">, </span><span class="s1">MYSQL </span><span class="s4">*</span><span class="s1">conn</span><span class="s4">) {</span>
+    <span class="s6">// Vérification de la méthode HTTP</span>
+    <span class="s6">// Cette fonction ne reçoit pas de requête, donc pas de méthode HTTP à vérifier</span>
+    <span class="s1">std</span><span class="s4">::</span><span class="s1">ostringstream oss</span><span class="s4">;</span>
+    <span class="s1">oss </span><span class="s4">&lt;&lt; </span><span class="s2">&quot;DELETE FROM first WHERE id = &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">id</span><span class="s4">;</span>
+    <span class="s3">if </span><span class="s4">(</span><span class="s1">mysql_query</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">, </span><span class="s1">oss</span><span class="s4">.</span><span class="s1">str</span><span class="s4">().</span><span class="s1">c_str</span><span class="s4">())) {</span>
+        <span class="s3">return </span><span class="s4">{</span><span class="s5">500</span><span class="s4">, </span><span class="s2">&quot;Error executing SQL query: &quot; </span><span class="s4">+ </span><span class="s1">std</span><span class="s4">::</span><span class="s1">string</span><span class="s4">(</span><span class="s1">mysql_error</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">))};</span>
+    <span class="s4">} </span><span class="s3">else </span><span class="s4">{</span>
+        <span class="s3">return </span><span class="s4">{</span><span class="s5">200</span><span class="s4">, </span><span class="s2">&quot;Data deleted successfully&quot;</span><span class="s4">};</span>
+    <span class="s4">}</span>
+<span class="s4">}</span>
+
+<span class="s3">int </span><span class="s1">main</span><span class="s4">() {</span>
+    <span class="s1">MYSQL </span><span class="s4">*</span><span class="s1">conn</span><span class="s4">;</span>
+    <span class="s3">if </span><span class="s4">(!</span><span class="s1">connectToDatabase</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">)) {</span>
+        <span class="s3">return </span><span class="s5">1</span><span class="s4">;</span>
+    <span class="s4">}</span>
+
+    <span class="s1">crow</span><span class="s4">::</span><span class="s1">SimpleApp app</span><span class="s4">;</span>
+
+    <span class="s1">CROW_ROUTE</span><span class="s4">(</span><span class="s1">app</span><span class="s4">, </span><span class="s2">&quot;/&quot;</span><span class="s4">).</span><span class="s1">methods</span><span class="s4">(</span><span class="s2">&quot;GET&quot;</span><span class="s1">_method</span><span class="s4">)([&amp;</span><span class="s1">conn</span><span class="s4">]() {</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">ifstream ifs</span><span class="s4">(</span><span class="s2">&quot;login.html&quot;</span><span class="s4">);</span>
+        <span class="s1">std</span><span class="s4">::</span><span class="s1">string content</span><span class="s4">((</span><span class="s1">std</span><span class="s4">::</span><span class="s1">istreambuf_iterator</span><span class="s4">&lt;</span><span class="s3">char</span><span class="s4">&gt;(</span><span class="s1">ifs</span><span class="s4">)), (</span><span class="s1">std</span><span class="s4">::</span><span class="s1">istreambuf_iterator</span><span class="s4">&lt;</span><span class="s3">char</span><span class="s4">&gt;()));</span>
+        <span class="s3">return </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">response</span><span class="s4">(</span><span class="s5">200</span><span class="s4">, </span><span class="s1">content</span><span class="s4">);</span>
+    <span class="s4">});</span>
+
+    <span class="s1">CROW_ROUTE</span><span class="s4">(</span><span class="s1">app</span><span class="s4">, </span><span class="s2">&quot;/login&quot;</span><span class="s4">).</span><span class="s1">methods</span><span class="s4">(</span><span class="s2">&quot;POST&quot;</span><span class="s1">_method</span><span class="s4">)([&amp;</span><span class="s1">conn</span><span class="s4">](</span><span class="s3">const </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">request </span><span class="s4">&amp;</span><span class="s1">req</span><span class="s4">) {</span>
+        <span class="s3">return </span><span class="s1">handleLogin</span><span class="s4">(</span><span class="s1">req</span><span class="s4">, </span><span class="s1">conn</span><span class="s4">);</span>
+    <span class="s4">});</span>
+
+
+    <span class="s1">CROW_ROUTE</span><span class="s4">(</span><span class="s1">app</span><span class="s4">, </span><span class="s2">&quot;/data&quot;</span><span class="s4">).</span><span class="s1">methods</span><span class="s4">(</span><span class="s2">&quot;GET&quot;</span><span class="s1">_method</span><span class="s4">)([&amp;</span><span class="s1">conn</span><span class="s4">](</span><span class="s3">const </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">request </span><span class="s4">&amp;</span><span class="s1">req</span><span class="s4">) {</span>
+        <span class="s3">return </span><span class="s1">handleData</span><span class="s4">(</span><span class="s1">req</span><span class="s4">, </span><span class="s1">conn</span><span class="s4">);</span>
+    <span class="s4">});</span>
+
+    <span class="s1">CROW_ROUTE</span><span class="s4">(</span><span class="s1">app</span><span class="s4">, </span><span class="s2">&quot;/data/create&quot;</span><span class="s4">).</span><span class="s1">methods</span><span class="s4">(</span><span class="s2">&quot;POST&quot;</span><span class="s1">_method</span><span class="s4">)([&amp;</span><span class="s1">conn</span><span class="s4">](</span><span class="s3">const </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">request </span><span class="s4">&amp;</span><span class="s1">req</span><span class="s4">) {</span>
+        <span class="s3">return </span><span class="s1">handleDataCreate</span><span class="s4">(</span><span class="s1">req</span><span class="s4">, </span><span class="s1">conn</span><span class="s4">);</span>
+    <span class="s4">});</span>
+
+    <span class="s1">CROW_ROUTE</span><span class="s4">(</span><span class="s1">app</span><span class="s4">, </span><span class="s2">&quot;/data/update/&lt;int&gt;&quot;</span><span class="s4">).</span><span class="s1">methods</span><span class="s4">(</span><span class="s2">&quot;PUT&quot;</span><span class="s1">_method</span><span class="s4">)([&amp;</span><span class="s1">conn</span><span class="s4">](</span><span class="s3">const </span><span class="s1">crow</span><span class="s4">::</span><span class="s1">request </span><span class="s4">&amp;</span><span class="s1">req</span><span class="s4">, </span><span class="s3">int </span><span class="s1">id</span><span class="s4">) {</span>
+        <span class="s3">return </span><span class="s1">handleDataUpdate</span><span class="s4">(</span><span class="s1">req</span><span class="s4">, </span><span class="s1">id</span><span class="s4">, </span><span class="s1">conn</span><span class="s4">);</span>
+    <span class="s4">});</span>
+
+    <span class="s1">CROW_ROUTE</span><span class="s4">(</span><span class="s1">app</span><span class="s4">, </span><span class="s2">&quot;/data/delete/&lt;int&gt;&quot;</span><span class="s4">).</span><span class="s1">methods</span><span class="s4">(</span><span class="s2">&quot;DELETE&quot;</span><span class="s1">_method</span><span class="s4">)([&amp;</span><span class="s1">conn</span><span class="s4">](</span><span class="s3">int </span><span class="s1">id</span><span class="s4">) {</span>
+        <span class="s3">return </span><span class="s1">handleDataDelete</span><span class="s4">(</span><span class="s1">id</span><span class="s4">, </span><span class="s1">conn</span><span class="s4">);</span>
+    <span class="s4">});</span>
+
+    <span class="s1">app</span><span class="s4">.</span><span class="s1">port</span><span class="s4">(</span><span class="s5">8080</span><span class="s4">).</span><span class="s1">multithreaded</span><span class="s4">().</span><span class="s1">run</span><span class="s4">();</span>
+
+    <span class="s1">mysql_close</span><span class="s4">(</span><span class="s1">conn</span><span class="s4">);</span>
+    <span class="s3">return </span><span class="s5">0</span><span class="s4">;</span>
+<span class="s4">}</span>
+</pre>
+</body>
+</html>

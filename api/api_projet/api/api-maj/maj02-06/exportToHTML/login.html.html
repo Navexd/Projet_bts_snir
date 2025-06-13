@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>login.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d5b778;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bababa;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+.s5 { color: #56a8f5;}
+.s6 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+login.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">html</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">lang</span><span class="s3">=&quot;fr&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;head&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">charset</span><span class="s3">=&quot;UTF-8&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">name</span><span class="s3">=&quot;viewport&quot; </span><span class="s2">content</span><span class="s3">=&quot;width=device-width, initial-scale=1.0&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;title&gt;</span><span class="s1">Connexion</span><span class="s0">&lt;/title&gt;</span>
+    <span class="s0">&lt;style&gt;</span>
+        <span class="s0">body </span><span class="s1">{</span>
+            <span class="s2">font-family</span><span class="s1">: </span><span class="s0">Arial</span><span class="s1">, </span><span class="s3">sans-serif</span><span class="s1">;</span>
+            <span class="s2">display</span><span class="s1">: </span><span class="s3">flex</span><span class="s1">;</span>
+            <span class="s2">justify-content</span><span class="s1">: </span><span class="s3">center</span><span class="s1">;</span>
+            <span class="s2">align-items</span><span class="s1">: </span><span class="s3">center</span><span class="s1">;</span>
+            <span class="s2">height</span><span class="s1">: </span><span class="s4">100</span><span class="s3">vh</span><span class="s1">;</span>
+            <span class="s2">margin</span><span class="s1">: </span><span class="s4">0</span><span class="s1">;</span>
+            <span class="s2">background-color</span><span class="s1">: </span><span class="s5">#f0f0f0</span><span class="s1">;</span>
+        <span class="s1">}</span>
+        <span class="s0">form </span><span class="s1">{</span>
+            <span class="s2">width</span><span class="s1">: </span><span class="s4">300</span><span class="s3">px</span><span class="s1">; </span><span class="s6">/* Largeur fixe */</span>
+            <span class="s2">background</span><span class="s1">: </span><span class="s5">#fff</span><span class="s1">;</span>
+            <span class="s2">padding</span><span class="s1">: </span><span class="s4">40</span><span class="s3">px</span><span class="s1">;</span>
+            <span class="s2">border-radius</span><span class="s1">: </span><span class="s4">20</span><span class="s3">px</span><span class="s1">;</span>
+            <span class="s2">box-shadow</span><span class="s1">: </span><span class="s4">0 0 10</span><span class="s3">px </span><span class="s0">rgba</span><span class="s1">(</span><span class="s4">0</span><span class="s1">, </span><span class="s4">0</span><span class="s1">, </span><span class="s4">0</span><span class="s1">, </span><span class="s4">0.1</span><span class="s1">);</span>
+        <span class="s1">}</span>
+        <span class="s0">h1 </span><span class="s1">{</span>
+            <span class="s2">margin-bottom</span><span class="s1">: </span><span class="s4">20</span><span class="s3">px</span><span class="s1">;</span>
+            <span class="s2">text-align</span><span class="s1">: </span><span class="s3">center</span><span class="s1">; </span><span class="s6">/* Centrage du titre */</span>
+        <span class="s1">}</span>
+        <span class="s0">input </span><span class="s1">{</span>
+            <span class="s2">display</span><span class="s1">: </span><span class="s3">block</span><span class="s1">;</span>
+            <span class="s2">width</span><span class="s1">: </span><span class="s4">100</span><span class="s1">%;</span>
+            <span class="s2">padding</span><span class="s1">: </span><span class="s4">10</span><span class="s3">px</span><span class="s1">;</span>
+            <span class="s2">margin-bottom</span><span class="s1">: </span><span class="s4">10</span><span class="s3">px</span><span class="s1">;</span>
+            <span class="s2">border</span><span class="s1">: </span><span class="s4">1</span><span class="s3">px solid </span><span class="s5">#ccc</span><span class="s1">;</span>
+            <span class="s2">border-radius</span><span class="s1">: </span><span class="s4">4</span><span class="s3">px</span><span class="s1">;</span>
+        <span class="s1">}</span>
+        <span class="s0">button </span><span class="s1">{</span>
+            <span class="s2">display</span><span class="s1">: </span><span class="s3">block</span><span class="s1">;</span>
+            <span class="s2">width</span><span class="s1">: </span><span class="s4">100</span><span class="s1">%;</span>
+            <span class="s2">padding</span><span class="s1">: </span><span class="s4">10</span><span class="s3">px</span><span class="s1">;</span>
+            <span class="s2">background-color</span><span class="s1">: </span><span class="s5">#007BFF</span><span class="s1">;</span>
+            <span class="s2">color</span><span class="s1">: </span><span class="s5">#fff</span><span class="s1">;</span>
+            <span class="s2">border</span><span class="s1">: </span><span class="s3">none</span><span class="s1">;</span>
+            <span class="s2">border-radius</span><span class="s1">: </span><span class="s4">4</span><span class="s3">px</span><span class="s1">;</span>
+            <span class="s2">cursor</span><span class="s1">: </span><span class="s3">pointer</span><span class="s1">;</span>
+        <span class="s1">}</span>
+        <span class="s0">button</span><span class="s1">:</span><span class="s0">hover </span><span class="s1">{</span>
+            <span class="s2">background-color</span><span class="s1">: </span><span class="s5">#0056b3</span><span class="s1">;</span>
+        <span class="s1">}</span>
+    <span class="s0">&lt;/style&gt;</span>
+<span class="s0">&lt;/head&gt;</span>
+<span class="s0">&lt;body&gt;</span>
+<span class="s0">&lt;form </span><span class="s2">action</span><span class="s3">=&quot;/login&quot; </span><span class="s2">method</span><span class="s3">=&quot;post&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;h1&gt;</span><span class="s1">Connexion</span><span class="s0">&lt;/h1&gt;</span>
+    <span class="s0">&lt;label </span><span class="s2">for</span><span class="s3">=&quot;username&quot;</span><span class="s0">&gt;</span><span class="s1">Identifiant</span><span class="s0">&lt;/label&gt;</span>
+    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">id</span><span class="s3">=&quot;username&quot; </span><span class="s2">name</span><span class="s3">=&quot;admin&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Identifiant&quot; </span><span class="s2">required</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;label </span><span class="s2">for</span><span class="s3">=&quot;password&quot;</span><span class="s0">&gt;</span><span class="s1">Mot de passe</span><span class="s0">&lt;/label&gt;</span>
+    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;password&quot; </span><span class="s2">id</span><span class="s3">=&quot;password&quot; </span><span class="s2">name</span><span class="s3">=&quot;passwrd&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Mot de passe&quot; </span><span class="s2">required</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;button </span><span class="s2">type</span><span class="s3">=&quot;submit&quot;</span><span class="s0">&gt;</span><span class="s1">Se connecter</span><span class="s0">&lt;/button&gt;</span>
+<span class="s0">&lt;/form&gt;</span>
+<span class="s0">&lt;/body&gt;</span>
+<span class="s0">&lt;/html&gt;</span>
+</pre>
+</body>
+</html>
