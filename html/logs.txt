@@ -1,0 +1,126 @@
+Connection success
+(2024-06-05 07:53:19) [INFO    ] Crow/master server is running at http://0.0.0.0:8080 using 2 threads
+(2024-06-05 07:53:19) [INFO    ] Call `app.loglevel(crow::LogLevel::Warning)` to hide Info level logs.
+(2024-06-05 07:53:20) [INFO    ] Request: 127.0.0.1:38060 0x5597ea1bcd50 HTTP/1.1 GET /
+(2024-06-05 07:53:20) [INFO    ] Response: 0x5597ea1bcd50 / 200 0
+(2024-06-05 07:53:23) [INFO    ] Request: 127.0.0.1:38060 0x5597ea1bcd50 HTTP/1.1 GET /admin/login
+(2024-06-05 07:53:23) [INFO    ] Response: 0x5597ea1bcd50 /admin/login 200 0
+(2024-06-05 07:53:28) [INFO    ] Request: 127.0.0.1:57990 0x7f45ac002220 HTTP/1.1 POST /login
+(2024-06-05 07:53:28) [INFO    ] Response: 0x7f45ac002220 /login 302 0
+(2024-06-05 07:53:28) [INFO    ] Request: 127.0.0.1:57990 0x7f45ac002220 HTTP/1.1 GET /datad
+(2024-06-05 07:53:28) [INFO    ] Response: 0x7f45ac002220 /datad 200 0
+(2024-06-05 07:53:32) [INFO    ] Request: 127.0.0.1:57990 0x7f45ac002220 HTTP/1.1 GET /logs
+(2024-06-05 07:53:32) [INFO    ] Response: 0x7f45ac002220 /logs 200 0
+Connection success
+(2024-06-05 08:02:11) [INFO    ] Crow/master server is running at http://0.0.0.0:8080 using 2 threads
+(2024-06-05 08:02:11) [INFO    ] Call `app.loglevel(crow::LogLevel::Warning)` to hide Info level logs.
+(2024-06-05 08:02:28) [INFO    ] Closing IO service 0x5647eeac8d90
+(2024-06-05 08:02:28) [INFO    ] Closing main IO service (0x5647eeac72b8)
+(2024-06-05 08:02:28) [INFO    ] Exiting.
+Connection success
+(2024-06-05 08:02:42) [INFO    ] Crow/master server is running at http://0.0.0.0:8080 using 2 threads
+(2024-06-05 08:02:42) [INFO    ] Call `app.loglevel(crow::LogLevel::Warning)` to hide Info level logs.
+(2024-06-05 08:02:50) [INFO    ] Request: 127.0.0.1:42308 0x55c3100f0f50 HTTP/1.1 GET /logs
+(2024-06-05 08:02:50) [INFO    ] Response: 0x55c3100f0f50 /logs 200 0
+(2024-06-05 08:02:51) [INFO    ] Request: 127.0.0.1:42308 0x55c3100f0f50 HTTP/1.1 GET /logs
+(2024-06-05 08:02:51) [INFO    ] Response: 0x55c3100f0f50 /logs 200 0
+(2024-06-05 08:02:52) [INFO    ] Request: 127.0.0.1:42308 0x55c3100f0f50 HTTP/1.1 GET /logs
+(2024-06-05 08:02:52) [INFO    ] Response: 0x55c3100f0f50 /logs 200 0
+(2024-06-05 08:02:52) [INFO    ] Request: 127.0.0.1:42308 0x55c3100f0f50 HTTP/1.1 GET /logs
+(2024-06-05 08:02:52) [INFO    ] Response: 0x55c3100f0f50 /logs 200 0
+(2024-06-05 08:02:53) [INFO    ] Request: 127.0.0.1:42308 0x55c3100f0f50 HTTP/1.1 GET /logs
+(2024-06-05 08:02:53) [INFO    ] Response: 0x55c3100f0f50 /logs 200 0
+(2024-06-05 08:02:53) [INFO    ] Request: 127.0.0.1:42308 0x55c3100f0f50 HTTP/1.1 GET /logs
+(2024-06-05 08:02:53) [INFO    ] Response: 0x55c3100f0f50 /logs 200 0
+(2024-06-05 08:02:53) [INFO    ] Request: 127.0.0.1:42308 0x55c3100f0f50 HTTP/1.1 GET /logs
+(2024-06-05 08:02:53) [INFO    ] Response: 0x55c3100f0f50 /logs 200 0
+(2024-06-05 08:02:54) [INFO    ] Request: 127.0.0.1:42308 0x55c3100f0f50 HTTP/1.1 GET /logs
+(2024-06-05 08:02:54) [INFO    ] Response: 0x55c3100f0f50 /logs 200 0
+(2024-06-05 08:03:00) [INFO    ] Request: 127.0.0.1:39494 0x7fb6d4002220 HTTP/1.1 GET /admin/login
+(2024-06-05 08:03:00) [INFO    ] Response: 0x7fb6d4002220 /admin/login 200 0
+(2024-06-05 08:03:06) [INFO    ] Request: 127.0.0.1:42982 0x7fb6d4003850 HTTP/1.1 POST /login
+(2024-06-05 08:03:06) [INFO    ] Response: 0x7fb6d4003850 /login 302 0
+(2024-06-05 08:03:06) [INFO    ] Request: 127.0.0.1:42982 0x7fb6d4003850 HTTP/1.1 GET /datad
+(2024-06-05 08:03:06) [INFO    ] Response: 0x7fb6d4003850 /datad 200 0
+(2024-06-05 08:03:10) [INFO    ] Request: 127.0.0.1:42982 0x7fb6d4003850 HTTP/1.1 GET /logs
+(2024-06-05 08:03:10) [INFO    ] Response: 0x7fb6d4003850 /logs 200 0
+(2024-06-05 08:03:11) [INFO    ] Request: 127.0.0.1:42982 0x7fb6d4003850 HTTP/1.1 GET /logs
+(2024-06-05 08:03:11) [INFO    ] Response: 0x7fb6d4003850 /logs 200 0
+(2024-06-05 08:03:11) [INFO    ] Request: 127.0.0.1:42982 0x7fb6d4003850 HTTP/1.1 GET /logs
+(2024-06-05 08:03:11) [INFO    ] Response: 0x7fb6d4003850 /logs 200 0
+(2024-06-05 08:03:11) [INFO    ] Request: 127.0.0.1:42982 0x7fb6d4003850 HTTP/1.1 GET /logs
+(2024-06-05 08:03:11) [INFO    ] Response: 0x7fb6d4003850 /logs 200 0
+(2024-06-05 08:03:12) [INFO    ] Request: 127.0.0.1:42982 0x7fb6d4003850 HTTP/1.1 GET /logs
+(2024-06-05 08:03:12) [INFO    ] Response: 0x7fb6d4003850 /logs 200 0
+(2024-06-05 08:05:56) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:56) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:56) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:56) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:57) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:57) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:57) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:57) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:57) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:57) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:57) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:57) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:57) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:57) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:58) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:58) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:58) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:58) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:58) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:58) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:05:58) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:05:58) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:00) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:00) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:00) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:00) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:00) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:00) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:00) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:00) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:00) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:00) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:01) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:01) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:01) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:01) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:01) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:01) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:01) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:01) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:01) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:01) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:01) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:01) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:01) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:01) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:02) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:02) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:02) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:02) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:02) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:02) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:02) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:02) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:02) [INFO    ] Request: 127.0.0.1:34172 0x7fb6d4004d90 HTTP/1.1 GET /logs
+(2024-06-05 08:06:02) [INFO    ] Response: 0x7fb6d4004d90 /logs 200 0
+(2024-06-05 08:06:32) [INFO    ] Closing IO service 0x55c3100e4d90
+(2024-06-05 08:06:32) [INFO    ] Closing main IO service (0x55c3100e32b8)
+(2024-06-05 08:06:32) [INFO    ] Exiting.
+Connection success
+(2024-06-05 08:06:41) [INFO    ] Crow/master server is running at http://0.0.0.0:8080 using 2 threads
+(2024-06-05 08:06:41) [INFO    ] Call `app.loglevel(crow::LogLevel::Warning)` to hide Info level logs.
+(2024-06-05 08:06:43) [INFO    ] Request: 127.0.0.1:55224 0x55ba35492f50 HTTP/1.1 GET /logs
+(2024-06-05 08:06:43) [INFO    ] Response: 0x55ba35492f50 /logs 200 0
+(2024-06-05 08:06:46) [INFO    ] Request: 127.0.0.1:55224 0x55ba35492f50 HTTP/1.1 GET /logs
+(2024-06-05 08:06:46) [INFO    ] Response: 0x55ba35492f50 /logs 200 0
+(2024-06-05 08:06:47) [INFO    ] Request: 127.0.0.1:55224 0x55ba35492f50 HTTP/1.1 GET /logs
+(2024-06-05 08:06:47) [INFO    ] Response: 0x55ba35492f50 /logs 200 0
+(2024-06-05 08:06:49) [INFO    ] Request: 127.0.0.1:55224 0x55ba35492f50 HTTP/1.1 GET /logs
+(2024-06-05 08:06:49) [INFO    ] Response: 0x55ba35492f50 /logs 200 0
+(2024-06-05 08:06:50) [INFO    ] Request: 127.0.0.1:55224 0x55ba35492f50 HTTP/1.1 GET /logs
+(2024-06-05 08:06:50) [INFO    ] Response: 0x55ba35492f50 /logs 200 0

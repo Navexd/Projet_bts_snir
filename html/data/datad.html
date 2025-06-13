@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs</title>
+</head>
+<body>
+    <header>
+        <h1>ADP Nuisance Sonore</h1>
+        <a href="/logout">Se déconnecter</a>
+    </header>
+
+<section id="visualisation">
+    <header>
+        <a id=bu href="/logs">Voir les Logs</a>
+    </header>
+        <h2>Visualisation des Mesures</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Humidity</th>
+            <th>Noise</th>
+            <th>Date et Heure</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {DATA}
+                    <?php
+                    phpinfo();
+                    ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer>
+    <p>&copy; 2024 ADP Nuisance Sonore. Tous droits réservés.</p>
+</footer>
+</body>
+</html>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box;
+    }
+    
+    body {
+        color: #e1e1e1;
+        background-color: #111111;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    header {
+        width: 100%;
+        padding: 20px;
+        background-color: #222;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #333;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    header a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #444;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    header a:hover {
+        background-color: #666;
+    }
+    
+    section#visualisation {
+        flex: 1;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-color: #222;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+    
+    section#visualisation h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    table th, table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #444;
+    }
+    
+    table th {
+        background-color: #333;
+    }
+    
+    footer {
+        width: 100%;
+        padding: 10px;
+        background-color: #222;
+        text-align: center;
+        border-top: 2px solid #333;
+    }
+    
+    footer p {
+        font-size: 0.9em;
+    }
+    
+</style>
