@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Data Table</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Humidity</th>
+        <th>Noise</th>
+    </tr>
+    </thead>
+    <tbody>
+    {DATA}
+    <?php
+    phpinfo();
+    ?>
+    </tbody>
+</table>
+<!-- Exemple de lien de déconnexion -->
+<a href="/logout">Se déconnecter</a>
+
+</body>
+</html>
